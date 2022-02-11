@@ -15,8 +15,8 @@
 - 组合禁用 7天范围 禁用指定年月日 禁用指定时分秒
 - 还有别的常用的需求可以 @ 下
 
-![avatar](https://wangxince.site/React-Antd-TimeDisabled-demo/src/public/image1.jpg)
-![avatar](https://wangxince.site/React-Antd-TimeDisabled-demo/src/public/image2.jpg)
+![avatar](https://github.com/eternallycyf/React-Antd-TimeDisabled-demo/blob/main/src/public/image1.png?raw=true)
+![avatar](https://github.com/eternallycyf/React-Antd-TimeDis…led-demo/blob/main/src/public/image2.png?raw=true)
 
 ## 4.两个DatePicker交互
 ```js
