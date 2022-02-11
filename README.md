@@ -16,7 +16,7 @@
 - 还有别的常用的需求可以 @ 下
 
 ![avatar](https://github.com/eternallycyf/React-Antd-TimeDisabled-demo/blob/main/src/public/image1.png?raw=true)
-![avatar](https://github.com/eternallycyf/React-Antd-TimeDis…led-demo/blob/main/src/public/image2.png?raw=true)
+![avatar](https://github.com/eternallycyf/React-Antd-TimeDisabled-demo/blob/main/src/public/image2.png?raw=true)
 
 ## 4.两个DatePicker交互
 ```js
