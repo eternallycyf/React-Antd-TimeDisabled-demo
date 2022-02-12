@@ -76,13 +76,21 @@ import ToolClass from '../toolClass'
 const Picker2 = () => {
   const [form] = Form.useForm();
   const transformFn = new ToolClass()
-  const [disabledTimeDates, setDisabledTimeDates] = useState([]);
+  const [disabledTimeDates1, setDisabledTimeDates1] = useState([]);
+  const [disabledTimeDates2, setDisabledTimeDates2] = useState([]);
   // 将表单分为 startTime1 startTime2  endTime1 endTime2
-  const disabledRangeTime = (CurrentFormMoment: moment.MomentInput, type: string) => {
+  const disabledRangeTime1 = (CurrentFormMoment: moment.MomentInput, type: string) => {
+    let StartTime1 = disabledTimeDates1?.[0];
+    if (type === 'end') {
+      return transformFn.disabledTime(StartTime1, CurrentFormMoment)
+    }
+    return {}
+  };
+  const disabledRangeTime2 = (CurrentFormMoment: moment.MomentInput, type: string) => {
     // startTime1
     let StartTime1 = form.getFieldValue('startTime')?.[0];
     // endTime1
-    let endTime1 = disabledTimeDates?.[0];
+    let endTime1 = disabledTimeDates2?.[0];
     if (type === 'start') {
       return transformFn.disabledTime(StartTime1, CurrentFormMoment)
     }
@@ -102,6 +110,8 @@ const Picker2 = () => {
         <Form.Item name='startTime'>
           <RangePicker
             onChange={() => form.setFieldsValue({ endTime: null })}
+            onCalendarChange={(val: any) => setDisabledTimeDates1(val)}
+            disabledTime={disabledRangeTime1}
             showTime={{
               hideDisabledOptions: true
             }}
@@ -109,9 +119,9 @@ const Picker2 = () => {
         </Form.Item>
         <Form.Item name='endTime'>
           <RangePicker
-            onCalendarChange={(val: any) => setDisabledTimeDates(val)}
+            onCalendarChange={(val: any) => setDisabledTimeDates2(val)}
             disabledDate={disabledRangeDate}
-            disabledTime={disabledRangeTime}
+            disabledTime={disabledRangeTime2}
             showTime={{
               hideDisabledOptions: true
             }}
