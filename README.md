@@ -5,6 +5,7 @@
 - 但当掺杂了时分秒后 就不是很清晰了
 - 因此 在这里把常用 关于时间禁用的方法封装成了一个类
 - 以方便查找调用
+- 然后总结了一些Bug的解决
 
 ## 2.仓库具有完整的demo和注释 使用方式简单
 
@@ -194,4 +195,35 @@ export default class ToolClass {
     return {}
   }
 }
+```
+
+## Bug
+```js
+# 1. 动态设置showTime.defaultValue
+当点击时间选择框会默认 选择当前的时间。但是禁用关系和它冲突的时候就需要定义defaultValue
+defaultValue 只会渲染一次 因此只能写一个固定值值
+如果想传入变量 需要对该组件进行重新渲染
+解决方法: 直接利用 Form.Item shouldUpdate 方法进行 动态条件渲染
+在Form.Item内部通过注入的 getFieldValue 方法来拿到最新的值
+<Form.Item shouldUpdate={(pre, cru) => cru.xxx != pre.xxx }>
+{({ getFieldValue }) => {
+  return (
+    <Form.Item name='xxx'>
+      <DatePicker 
+        showTime={{
+          defaultValue: moment(
+            getFieldValue('xxx') == null
+              ? moment().add(2, 'hours').format('HH:00:00')
+              : moment(getFieldValue('xxx')).add(1, 'hours').format('HH:00:00'),
+            'HH:mm:ss')
+        }}
+      />
+    </Form.Item>
+  )
+}
+</Form.Item>
+# 2. 当时范围选择器的时候
+onChange拿不到全部的两个值
+需要配置   
+value={" "}
 ```
