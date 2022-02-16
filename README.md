@@ -226,4 +226,9 @@ defaultValue 只会渲染一次 因此只能写一个固定值值
 onChange拿不到全部的两个值
 需要配置   
 value={" "}
+# 3. 时间组件点击后出现的弹窗 直接点时分秒 不先选择日期
+GitHub: https://github.com/ant-design/ant-design/issues/29023#ref-issue-793154283
+就会直接选中当天的时分秒 与禁用规则相冲突 
+目前这个是个组件库的Bug 还没有解决
+目前我的解决方法 直接onOk钩子函数中 判断时间是否正确 时间不对直接重置 弹框警告
 ```
