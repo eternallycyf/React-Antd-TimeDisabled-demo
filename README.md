@@ -197,6 +197,20 @@ export default class ToolClass {
 }
 ```
 
+## 禁用年
+```js
+ <DatePicker format="YYYY" disabledDate={disabledYear} />
+ function disabledYear(current) {
+  return current.year() === 2021; // disabling 2021
+  // return current.year() !== 2021; // disabling everything besides 2021
+  // return current.year() !== (new Date).getFullYear(); // disabling everything besides current year
+  // return current.year() > 2021; // disabling everything further than 2021
+  // return current.year() < 2021; // disabling everything in the past before 2021
+  // return [2018, 2019].includes(current.year()); // disabling 2018 and 2019
+}
+```
+
+
 ## Bug
 ```js
 # 1. 动态设置showTime.defaultValue
@@ -231,4 +245,6 @@ GitHub: https://github.com/ant-design/ant-design/issues/29023#ref-issue-79315428
 就会直接选中当天的时分秒 与禁用规则相冲突 
 目前这个是个组件库的Bug 还没有解决
 目前我的解决方法 直接onOk钩子函数中 判断时间是否正确 时间不对直接重置 弹框警告
+# 4. ant-vue 禁用年份无法成功
+需要升级到最新版 "ant-design-vue": "^1.7.8",
 ```
